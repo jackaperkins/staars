@@ -20,6 +20,10 @@ func _init():
 	g.setRect(14,3,6,7, tile_floor)
 	g.setRect(3,3,6,4, tile_floor)
 	g.setRect(3,10,7,8, tile_floor)
+	
+	g.setRect(5,5,1,10, tile_floor)
+	g.setRect(5,6,10,1, tile_floor)
+	
 	g.wrapTile(tile_floor, tile_wall)
 	
 	spawnSprites()
