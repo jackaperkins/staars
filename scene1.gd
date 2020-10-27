@@ -9,7 +9,7 @@ var rng = RandomNumberGenerator.new()
 func _init():
 	var g = Grid.new(10,10)
 	
-	for pos in g.coordinates():
+	for pos in g.positions():
 		var node = Sprite.new()
 		node.set_name("node")
 		node.texture = tile_wall.sprite if g.isEdge(pos.x, pos.y) else tile_floor.sprite
