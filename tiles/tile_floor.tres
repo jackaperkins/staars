@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://resources/tile.gd" type="Script" id=1]
+[ext_resource path="res://textures/tile_floor1.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+passable = true
+sprite = ExtResource( 2 )
