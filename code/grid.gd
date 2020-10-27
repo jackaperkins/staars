@@ -24,6 +24,15 @@ func _init( xx:int,  yy:int):
 				tiles[x][y] = 5
 			# print(tiles[x][y])
 
+func isEdge (x:int, y:int) -> bool:
+	if x == 0 || y == 0:
+		return true
+	
+	if x == columns-1 || y == rows-1:
+		return true
+	
+	return false
+
 func coordinates ():
 	var output = []
 	for x in range(columns):

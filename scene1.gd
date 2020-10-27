@@ -7,15 +7,12 @@ var tile_wall = load("res://tiles/tile_wall.tres")
 var rng = RandomNumberGenerator.new()
 
 func _init():
-	print("hiu mom")
-	
 	var g = Grid.new(10,10)
 	
-	for x in range(10):
-		for y in range(10):
-			var node = Sprite.new()
-			node.set_name("node")
-			node.texture = tile_floor.sprite if (rng.randf()>0.5) else tile_wall.sprite
-			node.position = Vector2(x*16, y*16)
-			add_child(node)
+	for pos in g.coordinates():
+		var node = Sprite.new()
+		node.set_name("node")
+		node.texture = tile_wall.sprite if g.isEdge(pos.x, pos.y) else tile_floor.sprite
+		node.position = Vector2(pos.x*16, pos.y*16)
+		add_child(node)
 	
