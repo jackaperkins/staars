@@ -34,13 +34,13 @@ func _init():
 	
 
 func _process(delta):
-	if Input.is_action_just_pressed("right"):
+	if Input.is_action_just_pressed("east"):
 		player.tryMove(1,0)
-	if Input.is_action_just_pressed("left"):
+	if Input.is_action_just_pressed("west"):
 		player.tryMove(-1,0)
-	if Input.is_action_just_pressed("up"):
+	if Input.is_action_just_pressed("north"):
 		player.tryMove(0,-1)
-	if Input.is_action_just_pressed("down"):
+	if Input.is_action_just_pressed("south"):
 		player.tryMove(0,1)
 		
 	
