@@ -14,6 +14,11 @@ func _init():
 	
 	for pos in g.positions():
 		spawnSprite(pos, g.getTile(pos.x, pos.y))
+		
+	var player = TileActor.new(3,3,g)
+	player.texture = load("res://textures/chest.png")
+	add_child(player)
+	
 	
 	
 func spawnSprite(pos, tile:Tile):
