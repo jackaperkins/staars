@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource( 1 )
-passable = true
-sprite = ExtResource( 2 )
+passable = false
+texture = ExtResource( 2 )

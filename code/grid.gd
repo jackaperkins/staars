@@ -6,19 +6,20 @@ var columns :int
 var rows : int
 
 var tiles
-
-var rng = RandomNumberGenerator.new()
-
 func _init( xx:int,  yy:int):
 	columns = xx
 	rows = yy
 	tiles = construct_array(columns,rows)
+
+func setTile(x:int, y:int, value):
+	if not isSafe(x,y):
+		pass
+	tiles[x][y] = value
 	
-	for x in range(columns):
-		for y in range(rows):
-			tiles[x][y] = 0
-			if rng.randi_range(0,10) > 5:
-				tiles[x][y] = 5
+func getTile(x:int, y:int):
+	if not isSafe(x,y):
+		return null
+	return tiles[x][y] 
 
 func isEdge (x:int, y:int) -> bool:
 	if x == 0 || y == 0:
@@ -28,6 +29,11 @@ func isEdge (x:int, y:int) -> bool:
 		return true
 	
 	return false
+	
+func isSafe(x:int, y:int) -> bool:
+	if x >= 0 and x < columns and y >= 0 and y < rows:
+		return true;
+	return false;
 
 func positions ():
 	var output = []
@@ -40,11 +46,11 @@ func construct_array(width:int, height:int):
 	var a = []
 
 	for x in range(width):
-	    a.append([])
-	    a[x].resize(height)
+		a.append([])
+		a[x].resize(height)
 	
-	    for y in range(height):
-	    	a[x][y] = null
+		for y in range(height):
+			a[x][y] = null
 	
 	return a
 	

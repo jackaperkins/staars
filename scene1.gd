@@ -6,13 +6,22 @@ var tile_wall = load("res://tiles/tile_wall.tres")
 
 var rng = RandomNumberGenerator.new()
 
+
+var g : TileGrid
+
 func _init():
-	var g = Grid.new(10,10)
+	g = TileGrid.new(10,10)
 	
 	for pos in g.positions():
-		var node = Sprite.new()
-		node.set_name("node")
-		node.texture = tile_wall.sprite if g.isEdge(pos.x, pos.y) else tile_floor.sprite
-		node.position = Vector2(pos.x*16, pos.y*16)
-		add_child(node)
+		spawnSprite(pos, g.getTile(pos.x, pos.y))
 	
+	
+func spawnSprite(pos, tile:Tile):
+	var node = Sprite.new()
+	node.set_name("node")
+	
+	g.setTile(pos.x, pos.y, tile_wall if g.isEdge(pos.x, pos.y) else tile_floor)
+	node.texture = g.getTile(pos.x, pos.y).texture
+	
+	node.position = Vector2(pos.x*16, pos.y*16)
+	add_child(node)

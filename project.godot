@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "Grid",
 "language": "GDScript",
 "path": "res://code/grid.gd"
+}, {
+"base": "Resource",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://resources/tile.gd"
+}, {
+"base": "Grid",
+"class": "TileGrid",
+"language": "GDScript",
+"path": "res://code/TileGrid.gd"
 } ]
 _global_script_class_icons={
-"Grid": ""
+"Grid": "",
+"Tile": "",
+"TileGrid": ""
 }
 
 [application]
