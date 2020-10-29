@@ -22,6 +22,14 @@ func setRect(x1:int, y1:int, x2:int, y2:int, value):
 			if not isSafe(i,k):
 				continue
 			tiles[i][k] = value
+			
+func setDiamond(x:int, y:int, radius:int, value):
+	for i in range(-radius, radius+1):
+		for k in range(- radius, radius+1):
+			if not isSafe(x+i,y+k):
+				continue
+			if abs(i)+abs(k) < radius:
+				setTile(x+i,y+k,value)
 
 func fill(value):
 	for x in range(columns):
@@ -38,6 +46,11 @@ func wrapTile(contents, wrapper):
 					setTile(x,y,wrapper)
 					break
 
+func shortWall(oldValue, newValue):
+	for x in range(columns):
+		for y in range(rows-1):
+			if tiles[x][y] == oldValue and tiles[x][y+1] != oldValue:
+				setTile(x,y,newValue)
 	
 func getTile(x:int, y:int):
 	if not isSafe(x,y):
