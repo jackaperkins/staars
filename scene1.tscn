@@ -9,3 +9,5 @@ script = ExtResource( 1 )
 position = Vector2( 294.119, 153.583 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
+[node name="TileHolder" type="Node2D" parent="."]

@@ -18,4 +18,5 @@ func tryMove(deltaX:int, deltaY:int):
 
 func _process(delta):
 	if position != Vector2(x*16, y*16):
+
 		position = position.move_toward(Vector2(x*16, y*16), 4)

@@ -19,10 +19,14 @@ func setTile(x:int, y:int, value):
 func setRect(x1:int, y1:int, x2:int, y2:int, value):
 	for i in range(x1, x1+x2):
 		for k in range(y1, y1+y2):
-			print(str(i, ":", k))
 			if not isSafe(i,k):
 				continue
 			tiles[i][k] = value
+
+func fill(value):
+	for x in range(columns):
+		for y in range(rows):
+			tiles[x][y] = value
 
 func wrapTile(contents, wrapper):
 	for x in range(columns):
@@ -46,9 +50,32 @@ func neighborPositions(x:int, y:int):
 		for k in range(-1,2):
 			if i == 0 and k == 0:
 				continue
-			if isSafe(x+i,y+k):
-				positions.push_back({x=(x+i),y=(y+k)})
+			var pos = {x=(x+i),y=(y+k)}
+			if isSafe(pos.x, pos.y):
+				positions.push_back(pos)
 	return positions
+	
+func neighborPositionsFour():
+	return [
+		{x=-1, y=0},
+		{x=1, y=0},
+		{x=0, y=1},
+		{x=0, y=-1}
+	]
+	
+func matchNeighbors(x:int, y:int, tile:Tile) -> int:
+	var matching = 0
+	for pos in neighborPositions(x,y):
+		if getTile(pos.x, pos.y) == tile:
+			matching += 1
+	return matching
+	
+func matchNeighborsFour(x:int, y:int, tile:Tile) -> int:
+	var matching = 0
+	for pos in neighborPositionsFour():
+		if getTile(x+pos.x, y+pos.y) == tile:
+			matching += 1
+	return matching
 
 func isEdge (x:int, y:int) -> bool:
 	if x == 0 || y == 0:

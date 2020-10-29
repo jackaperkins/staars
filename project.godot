@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Generators",
+"language": "GDScript",
+"path": "res://code/generators.gd"
+}, {
+"base": "Reference",
 "class": "Grid",
 "language": "GDScript",
 "path": "res://code/grid.gd"
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://code/TileGrid.gd"
 } ]
 _global_script_class_icons={
+"Generators": "",
 "Grid": "",
 "Tile": "",
 "TileActor": "",
