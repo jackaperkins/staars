@@ -3,12 +3,14 @@ extends Node2D
 var tile_floor = load("res://tiles/tile_floor.tres")
 var tile_wall = load("res://tiles/tile_wall.tres")
 var tile_roof = load("res://tiles/tile_roof.tres")
-
+var ak_duck = load("res://actors/ak_duck.tscn")
 
 var rng = RandomNumberGenerator.new()
 
 var player : TileActor
 var g : TileGrid
+
+var actors = []
 
 func _ready():
 	
@@ -16,9 +18,17 @@ func _ready():
 	
 	generate()
 	
-	player = TileActor.new(3,3,g)
+	player = TileActor.new()
 	player.texture = load("res://textures/chest.png")
+	player.setup(3,3,g)
 	add_child(player)
+	
+	for x in range(100):
+		var duck = ak_duck.instance()
+		add_child(duck)
+		duck.setup(6,6,g)
+		actors.append(duck)
+
 
 func generate():
 	var holder = $TileHolder
@@ -45,6 +55,8 @@ func _process(delta):
 	if Input.is_key_pressed(KEY_SPACE):
 		generate()
 		
+	for a in actors:
+		a.moveRandomly()
 	
 func spawnSprites():
 	var holder = get_node("TileHolder")
