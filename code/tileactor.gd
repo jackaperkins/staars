@@ -6,15 +6,23 @@ export var x:int
 export var y:int
 var parentGrid:TileGrid
 
+var action:Action
+
 func setup(xx:int, yy:int, grid:TileGrid):
 	x = xx
 	y = yy
+	position = Vector2(x*16, y*16)
 	parentGrid = grid
-	
+
+func getAction() -> Action:
+	if action != null:
+		return action
+	return RandomMove.new()
+
 func moveRandomly():
 	var directions = parentGrid.neighborPositionsFour()
 	var attempt = directions[randi()%directions.size()]
-	if parentGrid.isPassable(attempt.x + x, attempt.y + y):
+	if parentGrid.isPassable(attempt.x + x, attempt.y + y, true):
 		x += attempt.x
 		y += attempt.y
 	

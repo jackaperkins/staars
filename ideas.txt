@@ -5,4 +5,4 @@ spawner and destroyer of auto bumper actors, some limit on number spawned. can c
 pushing and pushing off chasms to fall to next floor
 pushing could chain, when two previously distant actors become neighbors in direction of push
 
-
+pull power

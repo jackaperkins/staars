@@ -10,7 +10,9 @@ var rng = RandomNumberGenerator.new()
 var player : TileActor
 var g : TileGrid
 
-var actors = []
+var tickTimer = 0
+
+var actorIndex = 0
 
 func _ready():
 	
@@ -20,14 +22,16 @@ func _ready():
 	
 	player = TileActor.new()
 	player.texture = load("res://textures/chest.png")
-	player.setup(3,3,g)
+	player.setup(6,6,g)
 	add_child(player)
+	player.action = PlayerMove.new();
+	g.actors.append(player)
 	
-	for x in range(100):
+	for x in range(20):
 		var duck = ak_duck.instance()
 		add_child(duck)
 		duck.setup(6,6,g)
-		actors.append(duck)
+		g.actors.append(duck)
 
 
 func generate():
@@ -43,20 +47,16 @@ func generate():
 	
 
 func _process(delta):
-	if Input.is_action_just_pressed("east"):
-		player.tryMove(1,0)
-	if Input.is_action_just_pressed("west"):
-		player.tryMove(-1,0)
-	if Input.is_action_just_pressed("north"):
-		player.tryMove(0,-1)
-	if Input.is_action_just_pressed("south"):
-		player.tryMove(0,1)
+
 		
 	if Input.is_key_pressed(KEY_SPACE):
 		generate()
-		
-	for a in actors:
-		a.moveRandomly()
+	
+	tickTimer += delta
+	if tickTimer > 0.01:
+		var a:TileActor = g.actors[actorIndex]
+		if a.getAction().run(a):
+			actorIndex = (actorIndex + 1) % g.actors.size()
 	
 func spawnSprites():
 	var holder = get_node("TileHolder")
