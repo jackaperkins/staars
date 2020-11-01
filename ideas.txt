@@ -1,0 +1,8 @@
+chess piece movement
+
+spawner and destroyer of auto bumper actors, some limit on number spawned. can carve the level based on a generated path for them?
+
+pushing and pushing off chasms to fall to next floor
+pushing could chain, when two previously distant actors become neighbors in direction of push
+
+
